@@ -41,7 +41,15 @@ namespace Lab_6
             for (var i = 0; i < list.Count; i++)
                 printer.IAmPrinting(list[i] as Vehicle);
 
-            
+            Port qqq = new Port();
+            qqq.vehicles = list;
+            qqq.Show();
+            Info ship2 = new Ship(true, 100);
+            qqq.AddVehicle(ship2);
+            qqq.Show();
+            qqq.RemoveVehicle(sailboat);
+            qqq.Show();
+
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Lab_6
     }
     abstract class Vehicle : VehicleDoes
     {
+        public byte CaptainAge;
         public abstract bool WannaBuy();
         public string captain { get; set; }
         public sbyte speed { get; set; }
@@ -62,9 +63,11 @@ namespace Lab_6
     sealed class Steamer : Vehicle
     {
         public int year_of_creation;
-        public Steamer(int a)
+        public int SeatsQuant;
+        public Steamer(int a = 0, int b = 0)
         {
             year_of_creation = a;
+            SeatsQuant = b;
         }
         class Steam_engine
         {
@@ -77,7 +80,7 @@ namespace Lab_6
         public override string ToString()
         {
             return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
-                        $"\nГод создания -  {year_of_creation}.");
+                        $"\nГод создания -  {year_of_creation}; Кол-во посадочных мест - {SeatsQuant}.");
         }
     }
     class Boat : Vehicle
@@ -116,15 +119,17 @@ namespace Lab_6
     {
         public string sail_color;
         public string sail_material;
-        public Sailboat(string a = "", string b = "")
+        public int water;
+        public Sailboat(string a = "", string b = "", int c = 0)
         {
             sail_color = a;
             sail_material = b;
+            water = c;
         }
         public override string ToString()
         {
             return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
-                         $"\nЭто боевое судно? {battle_ship}; Длина судна = {length}м. Цвет парусов - {sail_color}; Материал парусов - {sail_material}.");
+                         $"\nЭто боевое судно? {battle_ship}; Длина судна = {length}м. Цвет парусов - {sail_color}; Материал парусов - {sail_material}. Водоизмещение - {water}");
         }
     }
     class Corvette : Ship

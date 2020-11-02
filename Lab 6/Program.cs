@@ -13,24 +13,12 @@ namespace Lab_6
         {
             Info ship = new Ship(false, 76);
             Vehicle boat = new Boat(b: 5);
-            Vehicle steamer = new Steamer(2001);
+            boat.CaptainAge = 55;
+            Vehicle steamer = new Steamer(2001, 156);
+            steamer.CaptainAge = 30;
             Info corvette = new Corvette("Ususal");
-            VehicleDoes sailboat = new Sailboat("red", "silk");
+            VehicleDoes sailboat = new Sailboat("red", "silk", 50);            
 
-            // IS
-            if (sailboat is Vehicle) Console.WriteLine("ship можно привести к классу Vehicle.");
-            else Console.WriteLine("ship нельзя привести к классу Vehicle.");
-            if (ship is Corvette) Console.WriteLine("ship можно привести к классу Corvette.");
-            else Console.WriteLine("ship нельзя привести к классу Corvette.");
-            // AS
-            Object check = steamer as Vehicle;
-            if (check == null) Console.WriteLine("steamer нельзя привести к классу Vehicle");
-            else Console.WriteLine("steamer можно привести к классу Vehicle");
-            check = boat as Ship;
-            if (check == null) Console.WriteLine("boat нельзя привести к классу Ship\n");
-            else Console.WriteLine("boat можно привести к классу Ship\n");
-
-            // var list = (steamer, boat, ship, sailboat, corvette);
             Printer printer = new Printer();
             ArrayList list = new ArrayList();
             list.Add(steamer);
@@ -38,18 +26,29 @@ namespace Lab_6
             list.Add(ship);
             list.Add(sailboat);
             list.Add(corvette);
-            for (var i = 0; i < list.Count; i++)
-                printer.IAmPrinting(list[i] as Vehicle);
 
-            Port qqq = new Port();
-            qqq.vehicles = list;
-            qqq.Show();
+            Port port = new Port();
+            port.vehicles = list;
+            port.Show();
             Info ship2 = new Ship(true, 100);
-            qqq.AddVehicle(ship2);
-            qqq.Show();
-            qqq.RemoveVehicle(sailboat);
-            qqq.Show();
+            port.AddVehicle(ship2);
+            port.RemoveVehicle(boat);
+            port.Show();
 
+            VehicleDoes sailboat2 = new Sailboat("white", "cotton", 21);
+            port.AddVehicle(sailboat2);
+
+            PortControl control = new PortControl();
+            Console.WriteLine("WATER\t" + control.AverageWater(port));
+
+            Vehicle steamer2 = new Steamer(1987, 234);
+            steamer2.CaptainAge = 23;
+            Vehicle steamer3 = new Steamer(1930, 91);
+            steamer3.CaptainAge = 78;
+            port.AddVehicle(steamer2);
+            port.AddVehicle(steamer3);
+            Console.WriteLine("Average seats quantity\t" + control.AverageSeatsCount(port));
+            control.CaptainsBelow35(port);
         }
     }
 }
